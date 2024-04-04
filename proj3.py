@@ -1,7 +1,5 @@
 import random
 
-
-
 def generate_password():
     digits = list("0123456789")
     lowercase_letters = list("abcdefghijklmnopqrstuvwxyz")
@@ -39,18 +37,25 @@ def generate_password():
         print('Нужно было вводить либо "д", либо "н", но теперь поздно')
     ambiguous_symbols = input("Исключить неоднозначные символы?; д = да, н = нет ")
     if ambiguous_symbols == "д":
-        del [i], [l], [L], [o], [O]
+        if 'i' in chair:
+            chair.remove("i")
+        if 'l' in chair:
+            chair.remove("l")
+        if 'L' in chair:
+            chair.remove("L")
+        if 'o' in chair:
+            chair.remove("o")
+        if 'O' in chair:
+            chair.remove("O")
     elif ambiguous_symbols == "н":
         print("Пароль будет менее надёжным")
     else:
         print('Нужно было вводить либо "д", либо "н", но теперь поздно')
 
     cnt = int(input("Введите количество паролей"))
-    print("Введите длину пароля")
-    for _ in range(1, cnt + 1):
-        print(cnt)
-        password = random.sample(chair, int(input()))
-        print(password)
+    length = int(input("Введите длину пароля"))
+    for i in range(cnt):
+        print(''.join(random.sample(chair, length)))
 
 
 generate_password()
