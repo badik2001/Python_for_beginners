@@ -1,36 +1,41 @@
 def encrypt_text():
     print('Hello, this program can encrypt your text')
-    direction = ('Enter direction cipher = c, decipher = d')
+    direction = input('Enter direction cipher = cip, decipher = dec')
     alfabet = input('Enter alfabet English = e, Russian = r')
     step = int(input('Enter a step of cipher(number)'))
-    text = list(input('Enter a text'))
+    text = list(str(input('Enter a text')))
     new_text = []
-    if direction == 'c':
+    if direction == 'cip':
         if alfabet == 'e':
-            for i in text:
-                if str(text[i]).islower():
-                    new_text.append(chr(ord(text[[i]]) + (ord(text[[i]]) + step) % 122))
-                elif str(text[i]).isupper():
-                    new_text.append(chr(ord(text[[i]]) + (ord(text[[i]]) + step) % 90))
+            for c in text:
+                if c.islower():
+                    new_text.append(chr(ord(c) + step))
+                elif c.isupper():
+                    new_text.append(chr(ord(c) + step))
         elif alfabet == 'r':
-            for i in text:
-                if str(text[i]).islower():
-                    new_text.append(chr(ord(text[[i]]) + (ord(text[[i]]) + step) % 255))
-                elif str(text[i]).isupper():
-                    new_text.append(chr(ord(text[[i]]) + (ord(text[[i]]) + step) % 233))
-    elif direction == 'd':
+            for c in text:
+                if c.islower():
+                    print(ord(c))
+                    new_text.append(chr((ord(c) + step) % 1071))
+                    
+                elif c.isupper():
+                    print(ord(c))
+                    new_text.append(chr((ord(c) + step) % 1071))
+                    print(ord(c))
+    elif direction == 'dec':
         if alfabet == 'e':
-            for i in text:
-                if str(text[i]).islower():
-                    new_text.append(chr(ord(text[[i]]) - (ord(text[[i]]) + step) % 122))
-                elif str(text[i]).isupper():
-                    new_text.append(chr(ord(text[[i]]) - (ord(text[[i]]) + step) % 90))
+            for c in text:
+                if c.islower():
+                    new_text.append(chr(ord(c) + step))
+                    
+                elif c.isupper():
+                    new_text.append(chr(ord(c) + step))
         elif alfabet == 'r':
-            for i in text:
-                if str(text[i]).islower():
-                    new_text.append(chr(ord(text[[i]]) - (ord(text[[i]]) + step) % 255))
-                elif str(text[i]).isupper():
-                    new_text.append(chr(ord(text[[i]]) - (ord(text[[i]]) + step) % 233))
-    print(new_text)
+            for c in text:
+                if c.islower():
+                    new_text.append(chr(ord(c) + step))
+                elif c.isupper():
+                    new_text.append(chr(ord(c) + step))
+    print(''.join(new_text))
 
 encrypt_text()
