@@ -1,7 +1,7 @@
 def encrypt_text():
     print('Hello, this program can encrypt your text')
     step = int(input('Enter a step of cipher(number)'))
-    
+    direction = input('Enter direction cipher = c, decipher = d')
     text = input('Enter a text').split()
     new_text = []
     new_text2 = []
@@ -14,17 +14,29 @@ def encrypt_text():
     for word in text:
         
         for i in range(len(word)):
-            
-            
+
             if word[i] in english:
-                new_text.append(english[(english.index(word[i]) + step) % 26])
-                
+                if direction == 'c':
+                    new_text.append(english[(english.index(word[i]) + step) % 26])
+                elif direction == 'd':
+                    new_text.append(english[(english.index(word[i]) - step ) % 26])
             elif word[i] in ENGLISH:
-                new_text.append(ENGLISH[(ENGLISH.index(word[i]) + step) % 26])
+                if direction == 'c':
+                    new_text.append(ENGLISH[(ENGLISH.index(word[i]) + step) % 26])
+                elif direction == 'd':
+                    new_text.append(ENGLISH[(ENGLISH.index(word[i]) - step) % 26])
             elif word[i] in russian:
-                new_text.append(russian[(russian.index(word[i]) + step) % 32])
+                if direction == 'c':
+                    new_text.append(russian[(russian.index(word[i]) + step) % 32])
+                elif direction == 'd':
+                    new_text.append(russian[(russian.index(word[i]) - step) % 32])
             elif word[i] in RUSSIAN:
-                new_text.append(RUSSIAN[(RUSSIAN.index(word[i]) + step) % 32])
+                if direction == 'c':
+                    new_text.append(RUSSIAN[(RUSSIAN.index(word[i]) + step) % 32])
+                elif direction == 'd':
+                    new_text.append(RUSSIAN[(RUSSIAN.index(word[i]) - step) % 32])
+            elif word[i] in ',.-!&?"':
+                new_text.append(word[i])
         new_text2.append(''.join(new_text))
         new_text = []
     print(*new_text2)
